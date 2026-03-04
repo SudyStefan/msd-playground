@@ -1,7 +1,7 @@
 import './style.css'
 import typescriptLogo from './typescript.svg'
 import viteLogo from '/vite.svg'
-import { setupCounter } from './counter.ts'
+import type { Sort } from './sort.ts'
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   <div>
@@ -21,4 +21,26 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   </div>
 `
 
-setupCounter(document.querySelector<HTMLButtonElement>('#counter')!)
+const createShuffledList = (size: number): number[] => {
+  const list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  return list;
+}
+const unsortedList = createShuffledList(10)
+const runBuiltInSort = (list: number[]): number[] => {
+  const sorted_list = [1];
+  return sorted_list
+}
+const sortedListDefault = runBuiltInSort(unsortedList);
+
+const runSort = (algo: Sort): number[] => {
+  return algo.sort(unsortedList);
+}
+
+const sortedCorrectly = (listToCheck: number[]): boolean => {
+  for (let i = 0; i < listToCheck.length -1; i++) {
+    if (listToCheck[i] > sortedListDefault[i]) {
+      return false;
+    }
+  }
+  return true;
+}
