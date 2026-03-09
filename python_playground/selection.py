@@ -1,11 +1,9 @@
-def sort(list_to_sort: list[int]) -> tuple[list[int], int]:
-    loopcount = 0
+def sort(list_to_sort: list[int]) -> list[int]:
     for i in range(0, len(list_to_sort) - 1):
-        selected_item = list_to_sort[i]
-        j = i + 1
-        while list_to_sort[j] > selected_item and j < len(list_to_sort) - 1:
-            j += 1
-            loopcount += 1
-        list_to_sort[i] = list_to_sort[j]
-        list_to_sort[j] = selected_item
-    return list_to_sort, loopcount
+        min_index = i
+        for k in range(i + 1, len(list_to_sort)):
+            if list_to_sort[k] < list_to_sort[min_index]:
+                min_index = k
+        if min_index != i:
+            list_to_sort[i], list_to_sort[min_index] = list_to_sort[min_index], list_to_sort[i]
+    return list_to_sort
