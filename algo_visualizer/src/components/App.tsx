@@ -10,11 +10,15 @@ import { DndContext, DragOverlay, closestCenter, defaultDropAnimationSideEffects
 import type { DragEndEvent, DragStartEvent } from "@dnd-kit/core";
 import { arrayMove } from "@dnd-kit/sortable";
 import AlgoItem from "./AlgoItem";
+import { runBenchmarks, type BenchmarkResult } from "../algos/runner";
+import PerformanceChart from "./PerformanceChart";
 
 export const App = () => {
   const [availableAlgos, setAvailableAlgos] = useState<SortAlgorithm[]>([]);
   const [selectedAlgos, setSelectedAlgos] = useState<SortAlgorithm[]>([]);
   const [activeId, setActiveId] = useState<string | null>(null);
+  const [benchmarkData, setBenchmarkData] = useState<BenchmarkResult[]>([]);
+  const [isCalculating, setIsCalculating] = useState(false);
   const activeItem = [...availableAlgos, ...selectedAlgos].find((a) => a.name === activeId);
 
   useEffect(() => {
@@ -29,11 +33,9 @@ export const App = () => {
     const { active, over } = event;
     if (!over) return;
 
-    // 1. Identify which container we started in and which we are over
     const activeContainer = active.data.current?.sortable.containerId;
     const overContainer = over.data.current?.sortable.containerId || over.id;
 
-    // 2. SAME LIST MOVE (Reordering)
     if (activeContainer === overContainer) {
       if (activeContainer === "available") {
         setAvailableAlgos((items) => {
@@ -51,7 +53,6 @@ export const App = () => {
       return;
     }
 
-    // 3. CROSS LIST MOVE (Swapping)
     // Moving from Available -> Selected
     if (activeContainer === "available" && overContainer === "selected") {
       const itemToMove = availableAlgos.find((a) => a.name === active.id);
@@ -83,26 +84,47 @@ export const App = () => {
     setActiveId(null);
   };
 
+  const handleRunBenchmark = () => {
+    setIsCalculating(true);
+
+    setTimeout(() => {
+      const results = runBenchmarks(selectedAlgos);
+      setBenchmarkData(results);
+      setIsCalculating(false);
+    }, 100);
+  };
+
   return (
     <>
       <h1>Algo Visualizer</h1>
-      <DndContext onDragStart={handleDragStart} onDragEnd={handleDragEnd} collisionDetection={closestCenter}>
-        <div className="algoLists">
-          <AlgoList algos={availableAlgos} listId="available" listTitle="Available Algorithms"></AlgoList>
-          <AlgoList algos={selectedAlgos} listId="selected" listTitle="Selected Algorithms"></AlgoList>
-        </div>
+      <div className="appRoot">
+        <div>
+          <button
+            onClick={handleRunBenchmark}
+            disabled={isCalculating || selectedAlgos.length === 0}
+            className="runButton"
+          >
+            {isCalculating ? "Calculating..." : "Run Benchmarks"}
+          </button>
+          <DndContext onDragStart={handleDragStart} onDragEnd={handleDragEnd} collisionDetection={closestCenter}>
+            <div className="algoLists">
+              <AlgoList algos={availableAlgos} listId="available" listTitle="Available Algorithms"></AlgoList>
+              <AlgoList algos={selectedAlgos} listId="selected" listTitle="Selected Algorithms"></AlgoList>
+            </div>
 
-        <DragOverlay
-          dropAnimation={{
-            sideEffects: defaultDropAnimationSideEffects({
-              styles: { active: { opacity: "0.5" } }
-            })
-          }}
-        >
-          {activeItem ? <AlgoItem algo={activeItem} /> : null}
-        </DragOverlay>
-      </DndContext>
-      <p className="read-the-docs">Click on the Vite and React logos to learn more</p>
+            <DragOverlay
+              dropAnimation={{
+                sideEffects: defaultDropAnimationSideEffects({
+                  styles: { active: { opacity: "0.5" } }
+                })
+              }}
+            >
+              {activeItem ? <AlgoItem algo={activeItem} /> : null}
+            </DragOverlay>
+          </DndContext>
+        </div>
+        {benchmarkData.length > 0 && <PerformanceChart algos={selectedAlgos} data={benchmarkData} />}
+      </div>
     </>
   );
 };

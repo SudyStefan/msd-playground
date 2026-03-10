@@ -4,6 +4,7 @@ import { BigO } from "./SortAlgorithm";
 export default class Selection implements SortAlgorithm {
   readonly name = "Selection Sort";
   readonly expectedBigO: BigO = BigO.N_SQUARED;
+  readonly chartColor: string = "#f59e0b";
 
   sort = (listToSort: number[]): number[] => {
     for (let i = 0; i < listToSort.length - 1; i++) {

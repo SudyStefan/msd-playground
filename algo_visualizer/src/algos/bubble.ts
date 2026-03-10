@@ -4,6 +4,7 @@ import type SortAlgorithm from "./SortAlgorithm";
 export default class Bubble implements SortAlgorithm {
   readonly name = "Bubble Sort";
   readonly expectedBigO: BigO = BigO.N_SQUARED;
+  readonly chartColor: string = "#ef4444";
 
   sort = (listToSort: number[]): number[] => {
     let sortedCount = 1;

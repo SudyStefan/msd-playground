@@ -1,6 +1,7 @@
 export default interface SortAlgorithm {
   readonly name: string;
   readonly expectedBigO: BigO;
+  readonly chartColor: string;
 
   sort: (unsortedList: number[]) => number[];
 }

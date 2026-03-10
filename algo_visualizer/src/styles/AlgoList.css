@@ -1,7 +1,6 @@
 /* Container for the whole list */
 .algoLists {
   max-width: 50rem;
-  margin: 2.5rem auto 0;
   box-shadow:
     0 20px 25px -5px rgba(0, 0, 0, 0.1),
     0 10px 10px -5px rgba(0, 0, 0, 0.04);
@@ -42,7 +41,6 @@
 
 .algoItemName {
   font-weight: 600;
-  color: var(--primaryBlue);
 }
 
 /* Complexity Badge */

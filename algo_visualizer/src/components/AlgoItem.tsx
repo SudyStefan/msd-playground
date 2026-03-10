@@ -19,7 +19,9 @@ const AlgoItem = ({ algo }: ListItemProps) => {
 
   return (
     <div ref={setNodeRef} style={style} {...attributes} {...listeners} className="algoItem">
-      <span className="algoItemName">{algo.name}</span>
+      <span className="algoItemName" style={{ color: algo.chartColor }}>
+        {algo.name}
+      </span>
       <span className="algoItemComplexity">{algo.expectedBigO}</span>
     </div>
   );

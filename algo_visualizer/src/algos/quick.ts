@@ -4,6 +4,7 @@ import { BigO } from "./SortAlgorithm";
 export default class Quick implements SortAlgorithm {
   readonly name = "Quick Sort";
   readonly expectedBigO: BigO = BigO.N_LOG_N;
+  readonly chartColor: string = "#3b82f6";
 
   private partition = (listToSort: number[], low: number, high: number): number => {
     const pivot = listToSort[high];
