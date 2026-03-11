@@ -32,16 +32,14 @@ const App = () => {
   }, []);
 
   return (
-    <div className="flex min-h-screen min-w-screen items-center justify-center bg-stone-800">
-      <div className="flex-row">
-        <h1 className="pb-5 text-center text-5xl font-bold text-slate-400">
-          Available Apps
-        </h1>
-        <div className="mx-auto grid w-[90%] grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-5">
-          {sites.map((site) => (
-            <SiteCard key={site.name} {...site} />
-          ))}
-        </div>
+    <div className="flex min-h-screen min-w-screen flex-col items-center justify-center bg-stone-800">
+      <h1 className="pb-5 text-center text-5xl font-bold text-slate-400">
+        Available Apps
+      </h1>
+      <div className="mx-auto grid w-[90%] grid-cols-[repeat(auto-fill,400px)] justify-center gap-5">
+        {sites.map((site) => (
+          <SiteCard key={site.name} {...site} />
+        ))}
       </div>
     </div>
   );

@@ -3,35 +3,33 @@ import { cn } from "../helpers/utils";
 
 const SiteCard = ({ name, description, logoName, indexPath }: Site) => {
   return (
-    <a className="siteRef" href={indexPath}>
-      <div
+    <div className="flex w-full justify-center">
+      <a
         className={cn(
-          "flex h-full flex-col items-center justify-center",
+          "flex w-100 items-center justify-center",
           "rounded-xl border border-amber-100 bg-stone-600",
-          "p-5 shadow-sm",
+          "pt-5 pr-3 pb-5 shadow-sm",
           "transition-all duration-200 ease-in-out",
           "hover:scale-105 hover:shadow-lg",
         )}
+        href={indexPath}
       >
-        <div className="flex min-h-[20%]">
-          <h1 className="pb-5 text-center text-2xl font-bold text-slate-400">
-            {name}
-          </h1>
+        <div className="flex h-30 w-full basis-2/5 justify-center">
+          <img alt={`${name} Logo`} src={logoName} />
         </div>
-        <div className="flex w-full grow flex-row flex-wrap justify-center">
-          <div className="grow basis-2/5">
-            <img
-              alt={`${name} Logo`}
-              src={logoName}
-              className="h-auto max-w-full rounded-lg"
-            />
+        <div className="flex w-full basis-3/5 flex-col flex-wrap">
+          <div className="flex basis-1/5">
+            <h1 className="pb-5 text-center text-2xl font-bold text-slate-400">
+              {name}
+            </h1>
           </div>
-          <div className="grow basis-3/5">
+
+          <div className="basis-4/5">
             <p className="font-semibold text-slate-400">{description}</p>
           </div>
         </div>
-      </div>
-    </a>
+      </a>
+    </div>
   );
 };
 
