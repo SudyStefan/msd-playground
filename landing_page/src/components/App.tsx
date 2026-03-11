@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import "../styles/App.css";
 import SiteCard from "./SiteCard";
 
 export type Site = {
