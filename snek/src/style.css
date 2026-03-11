@@ -1,0 +1,226 @@
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+  margin: 0;
+}
+
+#app {
+  display: flex;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.vanilla:hover {
+  filter: drop-shadow(0 0 2em #3178c6aa);
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 0.5em;
+  font-size: 2em;
+  font-weight: 400;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+  margin-top: 5px;
+}
+button:hover {
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+#game-board {
+  display: grid;
+  /* This creates a 20x20 grid of 20px squares */
+  grid-template-columns: repeat(10, 100px);
+  grid-template-rows: repeat(10, 100px);
+  gap: 1px; /* Optional: adds a small line between cells */
+  background-color: #333;
+  border-color: #888;
+  border-style: solid;
+  border-width: 2px;
+  width: fit-content;
+}
+
+#info_board {
+  padding-left: 20px;
+  padding-right: 20px;
+  flex-direction: column;
+  border-color: #888;
+  border-style: solid;
+  border-width: 2px;
+}
+
+#snake_emoji {
+  display: flex;
+  min-height: 20%;
+  align-items: center;
+  justify-content: center;
+  font-size: 125px;
+}
+
+#game_info {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-direction: column;
+  min-height: 50%;
+  max-height: 50%;
+}
+
+#message {
+  font-size: 25px;
+}
+#interval {
+  font-size: 25px;
+}
+#controls {
+  font-size: 25px
+}
+
+#game_buttons {
+  display: flex;
+  flex-direction: column;
+  min-height: 30%;
+  justify-content: center;
+}
+
+.cell {
+  width: 100px;
+  height: 100px;
+  background-color: #1a1a1a;
+  border: 1px solid #222;
+  box-sizing: border-box;
+}
+
+.tail {
+  background-color: #4caf50;
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+  border-radius: 15px 15px 5px 5px;
+}
+
+.body {
+  background-color: #4caf50;
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+}
+
+.head {
+  background-color: #4caf50;
+  border-radius: 20px 20px 5px 5px;
+  z-index: 10;
+  transform: rotate(var(--angle, 90deg));
+}
+
+/* tongue for idle animation */
+.head::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 8px;
+  height: 30px;
+  background-color: #ff5252;
+  clip-path: polygon(0% 30%, 25% 0%, 50% 30%, 75% 0%, 100% 30%, 100% 100%, 0% 100%); /* forked tip */
+  bottom: 95%;
+  animation: snake-flick 3s infinite ease-in-out;
+}
+@keyframes snake-flick {
+  0%,
+  90% {
+    transform: translateX(-50%) scaleY(0);
+    opacity: 0;
+  }
+  93% {
+    transform: translateX(-50%) scaleY(1);
+    opacity: 1;
+  }
+  95% {
+    transform: translateX(-50%) scaleY(0.6);
+    opacity: 1;
+  }
+  97% {
+    transform: translateX(-50%) scaleY(1.2);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-50%) scaleY(0);
+    opacity: 0;
+  }
+}
+
+/* eyes */
+.head::after {
+  content: var(--eyes, "• •");
+  display: block;
+  line-height: 0;
+  padding-top: 20px;
+  font-size: 70px;
+  color: black;
+}
+
+.apple {
+  background-color: #f44336;
+  border-radius: 20px;
+  box-shadow: 0 0 10px #f44336;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+}

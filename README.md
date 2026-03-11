@@ -1,1 +1,6 @@
-# sort-algos
+- #### Algo Visualizer
+  - Charts the runtime of various Sorting Algorithms against each other
+- #### Snek
+  - Snake Game made in TypeScript
+- #### Landing Page
+  - Routing app for FH host
