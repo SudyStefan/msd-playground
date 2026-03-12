@@ -70,4 +70,7 @@ export const runBenchmarks = async (
 export const runVisulization = async (
   selectedAlgos: SortAlgorithm[],
   updateListToSort: Dispatch<SetStateAction<VisulizationData[]>>
-) => {};
+) => {
+  console.log(selectedAlgos);
+  console.log(updateListToSort);
+};

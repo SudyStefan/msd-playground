@@ -5,19 +5,21 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build && npm run build --prefix ../algo_visualizer && npm run build --prefix ../snek",
+    "build": "tsc -b && vite build",
+    "build_all": "tsc -b && vite build && npm run build --prefix ../algo_visualizer && npm run build --prefix ../snek",
     "lint": "eslint .",
-    "preview": "npm run build && vite preview"
+    "preview": "vite preview",
+    "preview_all": "npm run build_all && vite preview"
   },
   "dependencies": {
-    "@tailwindcss/vite": "^4.2.1",
     "clsx": "^2.1.1",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
-    "tailwind-merge": "^3.5.0",
-    "tailwindcss": "^4.2.1"
+    "tailwind-merge": "^3.5.0"
   },
   "devDependencies": {
+    "@tailwindcss/vite": "^4.2.1",
+    "tailwindcss": "^4.2.1",
     "@eslint/js": "^9.25.0",
     "@types/react": "^19.1.2",
     "@types/react-dom": "^19.1.2",
