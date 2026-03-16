@@ -7,7 +7,7 @@ export default class Heap implements DataStructure {
 
   readonly get = (): number[] => [];
   readonly pop = (): number => 0;
-  readonly push = (newItem: number): void => {};
+  readonly push = (_newItem: number): void => {};
 
   readonly visualize = (): JSX.Element => <></>;
 }

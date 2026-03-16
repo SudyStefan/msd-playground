@@ -9,7 +9,7 @@ export default class Stack implements DataStructure {
 
   readonly get = (): number[] => [...this.arr];
   readonly pop = (): number => 0;
-  readonly push = (newItem: number): void => {};
+  readonly push = (_newItem: number): void => {};
 
   readonly visualize = (): JSX.Element => {
     return <></>;
