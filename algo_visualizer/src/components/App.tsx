@@ -9,7 +9,7 @@ import {
   DndContext,
   DragOverlay,
   closestCenter,
-  defaultDropAnimationSideEffects
+  defaultDropAnimationSideEffects,
 } from "@dnd-kit/core";
 import type { DragEndEvent, DragStartEvent } from "@dnd-kit/core";
 import { arrayMove } from "@dnd-kit/sortable";
@@ -18,7 +18,7 @@ import {
   runBenchmarks,
   runVisulization,
   type BenchmarkDataPoint,
-  type VisulizationData
+  type VisulizationData,
 } from "../helpers/runner";
 import PerformanceChart from "./PerformanceChart";
 import Merge from "../algos/merge";
@@ -31,14 +31,14 @@ export const App = () => {
   const [activeId, setActiveId] = useState<string | null>(null);
   const [benchmarkData, setBenchmarkData] = useState<BenchmarkDataPoint[]>([]);
   const [visulizationData, setVisulizationData] = useState<VisulizationData[]>(
-    []
+    [],
   );
   const [isCalculating, setIsCalculating] = useState(false);
   const [maxN, setMaxN] = useState<number>(10000);
   const [intervals, setIntervals] = useState<number>(10);
 
   const activeItem = [...availableAlgos, ...selectedAlgos].find(
-    (a) => a.name === activeId
+    (a) => a.name === activeId,
   );
 
   useEffect(() => {
@@ -47,7 +47,7 @@ export const App = () => {
       new Insertion(),
       new Selection(),
       new Quick(),
-      new Merge()
+      new Merge(),
     ]);
   }, []);
 
@@ -145,29 +145,29 @@ export const App = () => {
     <div className="min-h-screen w-full bg-stone-800">
       <div
         className={cn(
-          "grid mx-auto p-6 grid-cols-1",
+          "mx-auto grid grid-cols-1 p-6",
           benchmarkData.length > 0 ? "lg:grid-cols-3" : "",
-          "justify-items-center items-center min-h-screen"
+          "min-h-screen items-center justify-items-center",
         )}
       >
         <div
           className={cn(
             "flex flex-col justify-center",
-            "items-center max-w-90 w-full",
-            benchmarkData.length > 0 ? "lg:col-span-1" : ""
+            "w-full max-w-90 items-center",
+            benchmarkData.length > 0 ? "lg:col-span-1" : "",
           )}
         >
-          <h1 className="mx-2 text-slate-400 font-bold text-6xl cursor-default">
+          <h1 className="mx-2 cursor-default text-6xl font-bold text-slate-400">
             Algo Visualizer
           </h1>
           <button
             onClick={handleRunBenchmark}
             disabled={isCalculating || selectedAlgos.length === 0}
             className={cn(
-              "bg-slate-700 w-full text-slate-300",
-              "font-medium text-2xl rounded-sm",
-              "py-2 my-2",
-              "hover:bg-slate-600 hover:cursor-pointer"
+              "w-full bg-slate-700 text-slate-300",
+              "rounded-sm text-2xl font-medium",
+              "my-2 py-2",
+              "hover:cursor-pointer hover:bg-slate-600",
             )}
           >
             {isCalculating ? "Calculating..." : "Run Benchmarks"}
@@ -176,28 +176,28 @@ export const App = () => {
             onClick={handleRunVisulization}
             disabled={isCalculating || selectedAlgos.length === 0}
             className={cn(
-              "bg-slate-700 w-full text-slate-300",
-              "font-medium text-2xl rounded-sm",
-              "py-2 mb-2",
-              "hover:bg-slate-600 hover:cursor-pointer"
+              "w-full bg-slate-700 text-slate-300",
+              "rounded-sm text-2xl font-medium",
+              "mb-2 py-2",
+              "hover:cursor-pointer hover:bg-slate-600",
             )}
           >
             {isCalculating ? "Calculating..." : "Run Visulization"}
           </button>
-          <div className="flex w-full flex-col border-teal-400 border-2 rounded-l-sm">
-            <div className="flex w-full text-slate-300 text-xl text-center">
-              <label className="basis-1/4 min-w-1/4 m-2">Max N:</label>
+          <div className="flex w-full flex-col rounded-l-sm border-2 border-teal-400">
+            <div className="flex w-full text-center text-xl text-slate-300">
+              <label className="m-2 min-w-1/4 basis-1/4">Max N:</label>
               <input
-                className="basis-3/4 min-w-0 text-center bg-stone-700 py-2"
+                className="min-w-0 basis-3/4 bg-stone-700 py-2 text-center"
                 type="number"
                 value={maxN}
                 onChange={(e) => setMaxN(Number(e.target.value))}
               />
             </div>
-            <div className="flex w-full text-slate-300 text-xl text-center">
-              <label className="basis-1/4 min-w-1/4 m-2">Intervals:</label>
+            <div className="flex w-full text-center text-xl text-slate-300">
+              <label className="m-2 min-w-1/4 basis-1/4">Intervals:</label>
               <input
-                className="basis-3/4 min-w-0 text-center bg-stone-700 py-2"
+                className="min-w-0 basis-3/4 bg-stone-700 py-2 text-center"
                 type="number"
                 value={intervals}
                 onChange={(e) => setIntervals(Number(e.target.value))}
@@ -211,21 +211,21 @@ export const App = () => {
           >
             <div
               className={cn(
-                "flex w-full m-auto overflow-hidden",
-                "border-teal-400 border-2 rounded-l-sm",
-                "my-2"
+                "m-auto flex w-full overflow-hidden",
+                "rounded-l-sm border-2 border-teal-400",
+                "my-2",
               )}
             >
               <AlgoList
                 algos={availableAlgos}
                 listId="available"
                 listTitle="Available"
-              ></AlgoList>
+              />
               <div className="flex flex-col">
                 <button
                   className={cn(
-                    "h-1/2 text-6xl p-1 bg-stone-700 text-slate-500 font-extrabold",
-                    "hover:bg-stone-600 hover:cursor-pointer"
+                    "h-1/2 bg-stone-700 p-1 text-6xl font-extrabold text-slate-500",
+                    "hover:cursor-pointer hover:bg-stone-600",
                   )}
                   onClick={moveAllToSelected}
                 >
@@ -233,8 +233,8 @@ export const App = () => {
                 </button>
                 <button
                   className={cn(
-                    "h-1/2 text-6xl p-1 bg-stone-700 text-slate-500 font-extrabold",
-                    "hover:bg-stone-600 hover:cursor-pointer"
+                    "h-1/2 bg-stone-700 p-1 text-6xl font-extrabold text-slate-500",
+                    "hover:cursor-pointer hover:bg-stone-600",
                   )}
                   onClick={moveAllToAvailable}
                 >
@@ -245,14 +245,14 @@ export const App = () => {
                 algos={selectedAlgos}
                 listId="selected"
                 listTitle="Selected"
-              ></AlgoList>
+              />
             </div>
 
             <DragOverlay
               dropAnimation={{
                 sideEffects: defaultDropAnimationSideEffects({
-                  styles: { active: { opacity: "0.5" } }
-                })
+                  styles: { active: { opacity: "0.5" } },
+                }),
               }}
             >
               {activeItem ? <AlgoItem algo={activeItem} /> : null}
@@ -266,10 +266,7 @@ export const App = () => {
           </a>
         </div>
         {benchmarkData.length > 0 && (
-          <PerformanceChart
-            algos={selectedAlgos}
-            data={benchmarkData}
-          />
+          <PerformanceChart algos={selectedAlgos} data={benchmarkData} />
         )}
         {visulizationData.length > 0 && <VisualizerView tbd="bla" />}
       </div>
