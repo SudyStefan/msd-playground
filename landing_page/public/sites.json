@@ -11,6 +11,12 @@
       "description": "Charts the runtime of various Sorting Algorithms against each other",
       "logoName": "./algo_visualizer/sort.png",
       "indexPath": "./algo_visualizer/index.html"
+    },
+    {
+      "name": "Data Visualizer",
+      "description": "Visualizes common operations of different data structures",
+      "logoName": "./data_visualizer/data.png",
+      "indexPath": "./data_visualizer/index.html"
     }
   ]
 }
