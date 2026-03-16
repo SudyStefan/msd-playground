@@ -6,5 +6,5 @@ import tailwindcss from "@tailwindcss/vite";
 export default defineConfig({
   plugins: [react(), tailwindcss()],
   base: "",
-  build: { outDir: "../dist/data_visualizer", emptyOutDir: true },
+  build: { outDir: "../dist/struct_visualizer", emptyOutDir: true },
 });

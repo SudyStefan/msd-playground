@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "build_all": "tsc -b && vite build && npm run build --prefix ../algo_visualizer && npm run build --prefix ../snek && npm run build --prefix ../data_visualizer",
+    "build_all": "tsc -b && vite build && npm run build --prefix ../algo_visualizer && npm run build --prefix ../snek && npm run build --prefix ../struct_visualizer",
     "lint": "eslint .",
     "preview": "vite preview",
     "preview_all": "npm run build_all && vite preview"

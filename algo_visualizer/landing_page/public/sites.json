@@ -15,8 +15,8 @@
     {
       "name": "Data Visualizer",
       "description": "Visualizes common operations of different data structures",
-      "logoName": "./data_visualizer/data.png",
-      "indexPath": "./data_visualizer/index.html"
+      "logoName": "./struct_visualizer/data.png",
+      "indexPath": "./struct_visualizer/index.html"
     }
   ]
 }
