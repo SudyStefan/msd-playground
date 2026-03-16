@@ -5,8 +5,10 @@ export default class Linked implements DataStructure {
   readonly name: string = "Linked";
   readonly associatedColor: string = "#ef4444";
 
-  readonly pop = (): void => {};
-  readonly push = (): void => {};
+  readonly get = (): number[] => [];
+  readonly pop = (): number => 0;
+  readonly push = (newItem: number): void => {};
+
   readonly visualize = (): JSX.Element => <></>;
 }
 

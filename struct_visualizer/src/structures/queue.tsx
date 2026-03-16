@@ -5,7 +5,9 @@ export default class Queue implements DataStructure {
   readonly name: string = "Queue";
   readonly associatedColor: string = "#10e971";
 
-  readonly pop = (): void => {};
-  readonly push = (): void => {};
+  readonly get = (): number[] => [];
+  readonly pop = (): number => 0;
+  readonly push = (newItem: number): void => {};
+
   readonly visualize = (): JSX.Element => <></>;
 }

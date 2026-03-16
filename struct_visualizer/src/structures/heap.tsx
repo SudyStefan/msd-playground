@@ -5,7 +5,9 @@ export default class Heap implements DataStructure {
   readonly name: string = "Heap";
   readonly associatedColor: string = "#10b981";
 
-  readonly pop = (): void => {};
-  readonly push = (): void => {};
+  readonly get = (): number[] => [];
+  readonly pop = (): number => 0;
+  readonly push = (newItem: number): void => {};
+
   readonly visualize = (): JSX.Element => <></>;
 }
