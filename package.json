@@ -4,7 +4,7 @@
   "scripts": {
     "build": "cd ./landing_page && npm run build_all",
     "preview": "cd ./landing_page && npm run preview_all",
-    "install": "cd ./landing_page && npm install && cd ../algo_visualizer && npm install && cd ../snek && npm install && cd ../data_visualizer && npm install"
+    "install": "cd ./landing_page && npm install && cd ../algo_visualizer && npm install && cd ../snek && npm install && cd ../struct_visualizer && npm install"
   },
   "devDependencies": {
     "prettier": "^3.8.1",

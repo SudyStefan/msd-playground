@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<head>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body id="top">
+  <div id="root">
+    <div id="nav">
+      <a href="#top">top</a>
+      <a href="#relativ">relativ</a>
+      <a href="#centered">centered</a>
+      <a href="#cardContainer">cards</a>
+      <a href="#animated">animated</a>
+      <a href="#flyin">bottom</a>
+    </div>
+    <div id="flexboxes">
+      <div class="sideBySide" style="background-color: #444444;">
+        1
+      </div>
+      <div class="sideBySide" style="background-color: #666666;">
+        2
+      </div>
+      <div class="sideBySide" style="background-color: #888888;">
+        3
+      </div>
+    </div>
+    <button>
+      knopf
+    </button>
+    <div id="relativ" class="quadrat">
+      quadrat relativ 30px unten 40px rechts
+    </div>
+    <div style="position: relative; width: 200px; height: 100px; margin-top: 50px">
+      relativ
+      <div style="position: absolute; right: 0; bottom: 0">
+        absolut unten rechts
+      </div>
+    </div>
+    <div id="centered">
+      <p style="border: 1px solid; padding: 20px">zentriert</p>
+    </div>
+
+    <div id="cardContainer">
+      <div class="card">1</div>
+      <div class="card">2</div>
+      <div class="card">3</div>
+      <div class="card">4</div>
+      <div class="card">5</div>
+      <div class="card">6</div>
+    </div>
+
+    <div id="animated">animiert</div>
+
+    <div style="margin-top: 50px; border: 0">
+      <div id="loading"></div>
+      <p style="position: absolute">loading...</p>
+    </div>
+
+    <div id="flyin">einfliegen</div>
+  </div>
+</body>

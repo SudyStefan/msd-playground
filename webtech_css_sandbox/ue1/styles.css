@@ -1,0 +1,164 @@
+body {
+  width: auto;
+  height: auto;
+  background-color: lightgray;
+  justify-items: center;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 1080px;
+  justify-content: center;
+  align-items: center;
+}
+
+#nav {
+  position: sticky;
+  z-index: 10;
+  top: 0;
+  border: 3px solid;
+  width: 400px;
+  background-color: bisque;
+  justify-content: space-evenly;
+  margin-bottom: 10px;
+}
+
+div {
+  display: flex;
+  border: 1px solid;
+  min-width: 40px;
+  min-height: 40px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 5px;
+  cursor: default;
+}
+
+.sideBySide {
+  display: flex;
+  width: 200px;
+  padding: 20px;
+  margin: 10px;
+  border: 3px solid;
+}
+
+#flexboxes {
+  display: flex;
+  flex-direction: row;
+  width: 95%;
+  justify-content: space-evenly;
+}
+
+button {
+  transition: 0.3s;
+  margin-top: 10px;
+  background-color: blue;
+  color: white;
+  width: 100px;
+}
+
+button:hover {
+  transition: 0.3s;
+  background-color: darkblue;
+  transform: scale(1.25);
+  cursor: pointer;
+}
+
+.quadrat {
+  position: relative;
+  top: 30px;
+  left: 40px;
+  width: 150px;
+  height: 150px;
+  background-color: chocolate;
+}
+
+#cardContainer {
+  display: flex;
+  width: 95%;
+  height: auto;
+  flex-wrap: wrap;
+  margin-top: 50px;
+  justify-content: space-evenly;
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+.card {
+  width: 200px;
+  box-shadow: 2px 2px rgb(0, 0, 0, 0.5);
+  height: 100px;
+  transition: 0.3s;
+  background-color: aqua;
+  margin: 5px;
+}
+
+.card:hover {
+  background-color: chocolate;
+  box-shadow: 3px 3px rgb(0, 0, 0, 0.5);
+  transition: 0.3s;
+  transform: translateY(-20px) scale(1.2);
+}
+
+#centered {
+  margin-top: 50px;
+  height: 400px;
+  width: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#animated {
+  transition: 0.3s;
+  height: 100px;
+  width: 200px;
+  margin-top: 50px;
+}
+
+#animated:hover {
+  transition: 0.3s;
+  transform: scale(1.25);
+  background-color: burlywood;
+}
+
+#loading {
+  border-width: 20px;
+  border-color: transparent;
+  border-top-color: red;
+  width: 100px;
+  height: 100px;
+  border-radius: 100%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+#flyin {
+  margin-top: 50px;
+  position: relative;
+  animation: slideIn 2s ease-out forwards;
+  background-color: cornflowerblue;
+  padding: 5px;
+}
+
+@keyframes slideIn {
+  from {
+    left: -800px;
+    opacity: 0;
+  }
+  to {
+    left: 0;
+    opacity: 1;
+  }
+}
