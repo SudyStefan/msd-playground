@@ -144,7 +144,7 @@ export const App = () => {
   return (
     <div
       className={cn(
-        "flex h-screen w-screen flex-col items-center justify-start",
+        "flex h-screen min-h-fit w-screen flex-col items-center justify-start",
         "lg:flex-row lg:justify-center",
         "gap-10 bg-stone-800 px-10",
       )}
