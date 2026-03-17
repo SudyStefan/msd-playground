@@ -7,10 +7,6 @@ export default class DoubleLinked implements DataStructure {
   readonly get = (): number[] => [];
   readonly pop = (): number => 0;
   readonly push = (_newItem: number): void => {};
-
-  readonly visualize = () => {
-    return <></>;
-  };
 }
 
 export class LinkedItem {}

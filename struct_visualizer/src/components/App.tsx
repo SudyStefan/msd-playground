@@ -17,6 +17,7 @@ import Heap from "../structures/heap";
 import Queue from "../structures/queue";
 import Stack from "../structures/stack";
 import DoubleLinked from "../structures/doubleLinked";
+import StructureContainer from "./StructureContainer";
 
 export const App = () => {
   const [availableStructures, setAvailableStructures] = useState<
@@ -118,101 +119,99 @@ export const App = () => {
   };
 
   return (
-    <div className="min-h-screen w-full items-center justify-center bg-stone-800">
+    <div
+      className={cn(
+        "flex h-screen w-screen flex-col items-center justify-start",
+        "md:flex-row md:justify-center",
+        "bg-stone-800",
+      )}
+    >
       <div
         className={cn(
-          "mx-auto grid grid-cols-1 p-6",
-          isVisualizing ? "lg:grid-cols-3" : "",
-          "min-h-screen items-center justify-items-center",
+          "flex flex-col items-center justify-center",
+          "w-full max-w-90",
         )}
       >
-        <div
+        <h1 className="mx-2 cursor-default text-6xl font-bold text-slate-400">
+          Structure Visualizer
+        </h1>
+        <button
+          onClick={handleRunVisualization}
+          disabled={isVisualizing || selectedStructures.length === 0}
           className={cn(
-            "flex flex-col justify-center",
-            "w-full max-w-90 items-center justify-center",
-            isVisualizing ? "lg:col-span-1" : "",
+            "w-full bg-slate-700 text-slate-300",
+            "rounded-sm text-2xl font-medium",
+            "my-2 py-2",
+            "hover:cursor-pointer hover:bg-slate-600",
           )}
         >
-          <h1 className="mx-2 cursor-default text-6xl font-bold text-slate-400">
-            Structure Visualizer
-          </h1>
-          <button
-            onClick={handleRunVisualization}
-            disabled={isVisualizing || selectedStructures.length === 0}
+          Visualize
+        </button>
+        <DndContext
+          onDragStart={handleDragStart}
+          onDragEnd={handleDragEnd}
+          collisionDetection={closestCenter}
+        >
+          <div
             className={cn(
-              "w-full bg-slate-700 text-slate-300",
-              "rounded-sm text-2xl font-medium",
-              "my-2 py-2",
-              "hover:cursor-pointer hover:bg-slate-600",
+              "m-auto flex w-full overflow-hidden",
+              "rounded-l-sm border-2 border-teal-400",
+              "my-2",
             )}
           >
-            Visualize
-          </button>
-          <DndContext
-            onDragStart={handleDragStart}
-            onDragEnd={handleDragEnd}
-            collisionDetection={closestCenter}
-          >
-            <div
-              className={cn(
-                "m-auto flex w-full overflow-hidden",
-                "rounded-l-sm border-2 border-teal-400",
-                "my-2",
-              )}
-            >
-              <StructureList
-                structures={availableStructures}
-                listId="available"
-                listTitle="Available"
-              />
-              <div className="flex flex-col">
-                <button
-                  className={cn(
-                    "h-1/2 bg-stone-700 p-1 text-6xl font-extrabold text-slate-500",
-                    "hover:cursor-pointer hover:bg-stone-600",
-                  )}
-                  onClick={moveAllToSelected}
-                >
-                  {">"}
-                </button>
-                <button
-                  className={cn(
-                    "h-1/2 bg-stone-700 p-1 text-6xl font-extrabold text-slate-500",
-                    "hover:cursor-pointer hover:bg-stone-600",
-                  )}
-                  onClick={moveAllToAvailable}
-                >
-                  {"<"}
-                </button>
-              </div>
-              <StructureList
-                structures={selectedStructures}
-                listId="selected"
-                listTitle="Selected"
-              ></StructureList>
+            <StructureList
+              structures={availableStructures}
+              listId="available"
+              listTitle="Available"
+            />
+            <div className="flex flex-col">
+              <button
+                className={cn(
+                  "h-1/2 bg-stone-700 p-1 text-6xl font-extrabold text-slate-500",
+                  "hover:cursor-pointer hover:bg-stone-600",
+                )}
+                onClick={moveAllToSelected}
+              >
+                {">"}
+              </button>
+              <button
+                className={cn(
+                  "h-1/2 bg-stone-700 p-1 text-6xl font-extrabold text-slate-500",
+                  "hover:cursor-pointer hover:bg-stone-600",
+                )}
+                onClick={moveAllToAvailable}
+              >
+                {"<"}
+              </button>
             </div>
+            <StructureList
+              structures={selectedStructures}
+              listId="selected"
+              listTitle="Selected"
+            ></StructureList>
+          </div>
 
-            <DragOverlay
-              dropAnimation={{
-                sideEffects: defaultDropAnimationSideEffects({
-                  styles: { active: { opacity: "0.5" } },
-                }),
-              }}
-            >
-              {activeItem ? <StructureItem structure={activeItem} /> : null}
-            </DragOverlay>
-          </DndContext>
-          <a
-            className="text-slate-500"
-            href="https://github.com/SudyStefan/DataAndAlgosPlayGround"
+          <DragOverlay
+            dropAnimation={{
+              sideEffects: defaultDropAnimationSideEffects({
+                styles: { active: { opacity: "0.5" } },
+              }),
+            }}
           >
-            {">> GitHub Repo <<"}
-          </a>
-        </div>
-        {isVisualizing &&
-          "" //<PerformanceChart algos={selectedAlgos} data={benchmarkData} />
-        }
+            {activeItem ? <StructureItem structure={activeItem} /> : null}
+          </DragOverlay>
+        </DndContext>
+        <a
+          className="text-slate-500"
+          href="https://github.com/SudyStefan/DataAndAlgosPlayGround"
+        >
+          {">> GitHub Repo <<"}
+        </a>
       </div>
+      {isVisualizing &&
+        selectedStructures.map((structure) => (
+          <StructureContainer key={structure.name} structure={structure} />
+        ))}
     </div>
   );
 };

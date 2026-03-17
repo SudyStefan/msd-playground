@@ -1,4 +1,3 @@
-import type { JSX } from "react";
 import type DataStructure from "./DataStructure";
 
 export default class Queue implements DataStructure {
@@ -8,6 +7,4 @@ export default class Queue implements DataStructure {
   readonly get = (): number[] => [];
   readonly pop = (): number => 0;
   readonly push = (_newItem: number): void => {};
-
-  readonly visualize = (): JSX.Element => <></>;
 }
