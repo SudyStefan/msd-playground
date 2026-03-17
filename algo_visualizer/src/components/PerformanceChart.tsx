@@ -8,7 +8,7 @@ import {
   Legend,
   ResponsiveContainer,
   ComposedChart,
-  Tooltip
+  Tooltip,
 } from "recharts";
 
 export type PerformanceChartProps = {
@@ -18,22 +18,15 @@ export type PerformanceChartProps = {
 
 const PerformanceChart = ({ data, algos }: PerformanceChartProps) => {
   return (
-    <div className="col-span-2 w-full h-full -mt-20">
-      <ResponsiveContainer
-        width="100%"
-        height="100%"
-      >
+    <div className="-mt-30 flex h-full w-full">
+      <ResponsiveContainer width="100%" height="100%">
         <ComposedChart data={data}>
           <CartesianGrid
             strokeDasharray="3 3"
             vertical={false}
             stroke="#e2e8f0"
           />
-          <XAxis
-            dataKey="n"
-            type="number"
-            domain={["dataMin", "dataMax"]}
-          />
+          <XAxis dataKey="n" type="number" domain={["dataMin", "dataMax"]} />
           <YAxis
             scale="auto"
             domain={[0, "auto"]}
@@ -52,7 +45,7 @@ const PerformanceChart = ({ data, algos }: PerformanceChartProps) => {
               zIndex: 5,
               borderRadius: "6px",
               padding: "5px 20px",
-              backgroundColor: "#323232"
+              backgroundColor: "#323232",
             }}
           />
           {algos.map((algo) => (

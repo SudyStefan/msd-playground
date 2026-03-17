@@ -123,7 +123,7 @@ export const App = () => {
       className={cn(
         "flex h-screen w-screen flex-col items-center justify-start",
         "md:flex-row md:justify-center",
-        "bg-stone-800",
+        "bg-stone-800 px-10",
       )}
     >
       <div

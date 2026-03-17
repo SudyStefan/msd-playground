@@ -142,134 +142,131 @@ export const App = () => {
   };
 
   return (
-    <div className="min-h-screen w-full bg-stone-800">
+    <div
+      className={cn(
+        "flex h-screen w-screen flex-col items-center justify-start",
+        "lg:flex-row lg:justify-center",
+        "bg-stone-800 px-10",
+      )}
+    >
       <div
         className={cn(
-          "mx-auto grid grid-cols-1 p-6",
-          benchmarkData.length > 0 ? "lg:grid-cols-3" : "",
-          "min-h-screen items-center justify-items-center",
+          "flex flex-col items-center justify-center",
+          "w-full max-w-90",
         )}
       >
-        <div
+        <h1 className="mx-2 cursor-default text-6xl font-bold text-slate-400">
+          Algo Visualizer
+        </h1>
+        <button
+          onClick={handleRunBenchmark}
+          disabled={isCalculating || selectedAlgos.length === 0}
           className={cn(
-            "flex flex-col justify-center",
-            "w-full max-w-90 items-center",
-            benchmarkData.length > 0 ? "lg:col-span-1" : "",
+            "w-full bg-slate-700 text-slate-300",
+            "rounded-sm text-2xl font-medium",
+            "my-2 py-2",
+            "hover:cursor-pointer hover:bg-slate-600",
           )}
         >
-          <h1 className="mx-2 cursor-default text-6xl font-bold text-slate-400">
-            Algo Visualizer
-          </h1>
-          <button
-            onClick={handleRunBenchmark}
-            disabled={isCalculating || selectedAlgos.length === 0}
-            className={cn(
-              "w-full bg-slate-700 text-slate-300",
-              "rounded-sm text-2xl font-medium",
-              "my-2 py-2",
-              "hover:cursor-pointer hover:bg-slate-600",
-            )}
-          >
-            {isCalculating ? "Calculating..." : "Run Benchmarks"}
-          </button>
-          <button
-            onClick={handleRunVisulization}
-            disabled={isCalculating || selectedAlgos.length === 0}
-            className={cn(
-              "w-full bg-slate-700 text-slate-300",
-              "rounded-sm text-2xl font-medium",
-              "mb-2 py-2",
-              "hover:cursor-pointer hover:bg-slate-600",
-            )}
-          >
-            {isCalculating ? "Calculating..." : "Run Visulization"}
-          </button>
-          <div className="flex w-full flex-col rounded-l-sm border-2 border-teal-400">
-            <div className="flex w-full text-center text-xl text-slate-300">
-              <label className="m-2 min-w-1/4 basis-1/4">Max N:</label>
-              <input
-                className="min-w-0 basis-3/4 bg-stone-700 py-2 text-center"
-                type="number"
-                value={maxN}
-                onChange={(e) => setMaxN(Number(e.target.value))}
-              />
-            </div>
-            <div className="flex w-full text-center text-xl text-slate-300">
-              <label className="m-2 min-w-1/4 basis-1/4">Intervals:</label>
-              <input
-                className="min-w-0 basis-3/4 bg-stone-700 py-2 text-center"
-                type="number"
-                value={intervals}
-                onChange={(e) => setIntervals(Number(e.target.value))}
-              />
-            </div>
+          {isCalculating ? "Calculating..." : "Run Benchmarks"}
+        </button>
+        <button
+          onClick={handleRunVisulization}
+          disabled={isCalculating || selectedAlgos.length === 0}
+          className={cn(
+            "w-full bg-slate-700 text-slate-300",
+            "rounded-sm text-2xl font-medium",
+            "mb-2 py-2",
+            "hover:cursor-pointer hover:bg-slate-600",
+          )}
+        >
+          {isCalculating ? "Calculating..." : "Run Visulization"}
+        </button>
+        <div className="flex w-full flex-col rounded-l-sm border-2 border-teal-400">
+          <div className="flex w-full text-center text-xl text-slate-300">
+            <label className="m-2 min-w-1/4 basis-1/4">Max N:</label>
+            <input
+              className="min-w-0 basis-3/4 bg-stone-700 py-2 text-center"
+              type="number"
+              value={maxN}
+              onChange={(e) => setMaxN(Number(e.target.value))}
+            />
           </div>
-          <DndContext
-            onDragStart={handleDragStart}
-            onDragEnd={handleDragEnd}
-            collisionDetection={closestCenter}
-          >
-            <div
-              className={cn(
-                "m-auto flex w-full overflow-hidden",
-                "rounded-l-sm border-2 border-teal-400",
-                "my-2",
-              )}
-            >
-              <AlgoList
-                algos={availableAlgos}
-                listId="available"
-                listTitle="Available"
-              />
-              <div className="flex flex-col">
-                <button
-                  className={cn(
-                    "h-1/2 bg-stone-700 p-1 text-6xl font-extrabold text-slate-500",
-                    "hover:cursor-pointer hover:bg-stone-600",
-                  )}
-                  onClick={moveAllToSelected}
-                >
-                  {">"}
-                </button>
-                <button
-                  className={cn(
-                    "h-1/2 bg-stone-700 p-1 text-6xl font-extrabold text-slate-500",
-                    "hover:cursor-pointer hover:bg-stone-600",
-                  )}
-                  onClick={moveAllToAvailable}
-                >
-                  {"<"}
-                </button>
-              </div>
-              <AlgoList
-                algos={selectedAlgos}
-                listId="selected"
-                listTitle="Selected"
-              />
-            </div>
-
-            <DragOverlay
-              dropAnimation={{
-                sideEffects: defaultDropAnimationSideEffects({
-                  styles: { active: { opacity: "0.5" } },
-                }),
-              }}
-            >
-              {activeItem ? <AlgoItem algo={activeItem} /> : null}
-            </DragOverlay>
-          </DndContext>
-          <a
-            className="text-slate-500"
-            href="https://github.com/SudyStefan/DataAndAlgosPlayGround"
-          >
-            {">> GitHub Repo <<"}
-          </a>
+          <div className="flex w-full text-center text-xl text-slate-300">
+            <label className="m-2 min-w-1/4 basis-1/4">Intervals:</label>
+            <input
+              className="min-w-0 basis-3/4 bg-stone-700 py-2 text-center"
+              type="number"
+              value={intervals}
+              onChange={(e) => setIntervals(Number(e.target.value))}
+            />
+          </div>
         </div>
-        {benchmarkData.length > 0 && (
-          <PerformanceChart algos={selectedAlgos} data={benchmarkData} />
-        )}
-        {visulizationData.length > 0 && <VisualizerView tbd="bla" />}
+        <DndContext
+          onDragStart={handleDragStart}
+          onDragEnd={handleDragEnd}
+          collisionDetection={closestCenter}
+        >
+          <div
+            className={cn(
+              "m-auto flex w-full overflow-hidden",
+              "rounded-l-sm border-2 border-teal-400",
+              "my-2",
+            )}
+          >
+            <AlgoList
+              algos={availableAlgos}
+              listId="available"
+              listTitle="Available"
+            />
+            <div className="flex flex-col">
+              <button
+                className={cn(
+                  "h-1/2 bg-stone-700 p-1 text-6xl font-extrabold text-slate-500",
+                  "hover:cursor-pointer hover:bg-stone-600",
+                )}
+                onClick={moveAllToSelected}
+              >
+                {">"}
+              </button>
+              <button
+                className={cn(
+                  "h-1/2 bg-stone-700 p-1 text-6xl font-extrabold text-slate-500",
+                  "hover:cursor-pointer hover:bg-stone-600",
+                )}
+                onClick={moveAllToAvailable}
+              >
+                {"<"}
+              </button>
+            </div>
+            <AlgoList
+              algos={selectedAlgos}
+              listId="selected"
+              listTitle="Selected"
+            />
+          </div>
+
+          <DragOverlay
+            dropAnimation={{
+              sideEffects: defaultDropAnimationSideEffects({
+                styles: { active: { opacity: "0.5" } },
+              }),
+            }}
+          >
+            {activeItem ? <AlgoItem algo={activeItem} /> : null}
+          </DragOverlay>
+        </DndContext>
+        <a
+          className="text-slate-500"
+          href="https://github.com/SudyStefan/DataAndAlgosPlayGround"
+        >
+          {">> GitHub Repo <<"}
+        </a>
       </div>
+      {benchmarkData.length > 0 && (
+        <PerformanceChart algos={selectedAlgos} data={benchmarkData} />
+      )}
+      {visulizationData.length > 0 && <VisualizerView tbd="bla" />}
     </div>
   );
 };
