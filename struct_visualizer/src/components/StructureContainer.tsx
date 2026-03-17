@@ -1,50 +1,34 @@
 import { useState } from "react";
-import { cn } from "../helpers/utils";
 import type DataStructure from "../structures/DataStructure";
-
-type ItemProp = {
-  value: number;
-  bgcolor: string;
-};
-
-const StructureItem = ({ value, bgcolor }: ItemProp) => {
-  const [opacity, setOpacity] = useState("30");
-  return (
-    <div
-      onMouseEnter={() => setOpacity("80")}
-      onMouseLeave={() => setOpacity("30")}
-      style={{ backgroundColor: `${bgcolor}${opacity}` }}
-      className={cn(
-        "flex h-full w-full items-center justify-center",
-        "transition-colors duration-300",
-        "text-2xl text-slate-300",
-      )}
-    >
-      {value}
-    </div>
-  );
-};
+import StructureItem from "./StructureItem";
 
 const StructureContainer = ({ structure }: { structure: DataStructure }) => {
+  const [list, setList] = useState([...structure.get()]);
+
+  const handleAdd = () => {
+    const nextValue = list[list.length - 1] + 1;
+    structure.push(nextValue);
+    setList((prev) => [...prev, nextValue]);
+  };
+
+  const handleRemove = () => {
+    structure.pop();
+    setList((prev) => prev.slice(0, -1));
+  };
+
   return (
-    <div className="flex h-200 w-90 flex-col items-center justify-center text-slate-300 md:h-[90%]">
-      <div className="flex w-full flex-row justify-between bg-stone-700">
-        <h1 className="w-[60%] text-center text-3xl font-semibold">
-          {structure.name}
-        </h1>
-        <div className="flex w-[40%] justify-between text-slate-300">
-          <button className="w-full hover:cursor-pointer hover:bg-stone-600">
-            +
-          </button>
-          <button className="w-full hover:cursor-pointer hover:bg-stone-600">
-            -
-          </button>
-        </div>
-      </div>
-      {[...structure.get()].reverse().map((val) => (
+    <div className="flex w-90 flex-col items-center justify-center bg-stone-700 text-slate-300 md:h-[90%]">
+      <h1 className="w-3/5 py-2 text-center text-3xl font-semibold">
+        {structure.name}
+      </h1>
+      {[...list].reverse().map((val, index) => (
         <StructureItem
           key={val}
           value={val}
+          onAdd={structure.shouldShowAdd(index) ? handleAdd : undefined}
+          onRemove={
+            structure.shouldShowRemove(index) ? handleRemove : undefined
+          }
           bgcolor={structure.associatedColor}
         />
       ))}

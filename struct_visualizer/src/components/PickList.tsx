@@ -1,22 +1,18 @@
 import { useDroppable } from "@dnd-kit/core";
 import type DataStructure from "../structures/DataStructure";
-import AlgoItem from "./StructureItem";
+import AlgoItem from "./PickItem";
 import {
   SortableContext,
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
 
-export type StructureListProps = {
+export type PickListProps = {
   structures: DataStructure[];
   listId: string;
   listTitle: string;
 };
 
-const StructureList = ({
-  structures,
-  listId,
-  listTitle,
-}: StructureListProps) => {
+const PickList = ({ structures, listId, listTitle }: PickListProps) => {
   const { setNodeRef } = useDroppable({ id: listId });
 
   return (
@@ -40,4 +36,4 @@ const StructureList = ({
   );
 };
 
-export default StructureList;
+export default PickList;

@@ -5,4 +5,7 @@ export default interface DataStructure {
   get(): number[];
   push(newItem: number): void;
   pop(): number;
+
+  shouldShowAdd(index: number): boolean;
+  shouldShowRemove(index: number): boolean;
 }

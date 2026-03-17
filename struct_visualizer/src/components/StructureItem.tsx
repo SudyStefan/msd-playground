@@ -1,30 +1,49 @@
-import type DataStructure from "../structures/DataStructure";
+import { Minus, Plus } from "lucide-react";
+import { useState } from "react";
 import { cn } from "../helpers/utils";
-import { useSortable } from "@dnd-kit/sortable";
-import { CSS } from "@dnd-kit/utilities";
 
-export type ListItemProps = { structure: DataStructure };
+type ItemProp = {
+  value: number;
+  bgcolor: string;
+  onAdd?: () => void;
+  onRemove?: () => void | number;
+};
 
-const StructureItem = ({ structure }: ListItemProps) => {
-  const { attributes, listeners, setNodeRef, transform, transition } =
-    useSortable({ id: structure.name });
-
-  const style = { transform: CSS.Transform.toString(transform), transition };
+const StructureItem = ({ value, bgcolor, onAdd, onRemove }: ItemProp) => {
+  const [opacity, setOpacity] = useState("30");
 
   return (
     <div
-      ref={setNodeRef}
-      style={style}
-      {...attributes}
-      {...listeners}
-      className={cn(
-        "flex items-center justify-center px-4 py-2",
-        "w-full border-b-2 border-teal-400 transition",
-        "cursor-default hover:cursor-grab hover:bg-stone-600",
-        "active:cursor-grabbing active:opacity-25",
-      )}
+      onMouseEnter={() => setOpacity("80")}
+      onMouseLeave={() => setOpacity("30")}
+      style={{ backgroundColor: `${bgcolor}${opacity}` }}
+      className={cn("relative flex h-12 w-full", "text-xl")}
     >
-      <span style={{ color: structure.associatedColor }}>{structure.name}</span>
+      {(onAdd || onRemove) && (
+        <>
+          <button
+            className={cn(
+              "flex h-full w-full items-center justify-center",
+              "bg-emerald-800 hover:cursor-pointer hover:bg-emerald-700",
+            )}
+            onClick={onAdd}
+          >
+            <Plus size={40} />
+          </button>
+          <button
+            className={cn(
+              "flex h-full w-full items-center justify-center",
+              "bg-amber-800 hover:cursor-pointer hover:bg-amber-700",
+            )}
+            onClick={onRemove}
+          >
+            <Minus size={40} />
+          </button>
+        </>
+      )}
+      <h1 className="pointer-events-none absolute flex h-full w-full items-center justify-center">
+        {value}
+      </h1>
     </div>
   );
 };

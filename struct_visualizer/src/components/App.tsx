@@ -11,8 +11,8 @@ import {
 import { arrayMove } from "@dnd-kit/sortable";
 import { cn } from "../helpers/utils";
 import Linked from "../structures/linked";
-import StructureItem from "./StructureItem";
-import StructureList from "./StructureList";
+import PickItem from "./PickItem";
+import PickList from "./PickList";
 import Heap from "../structures/heap";
 import Queue from "../structures/queue";
 import Stack from "../structures/stack";
@@ -123,11 +123,11 @@ export const App = () => {
       className={cn(
         "flex h-screen min-h-fit w-screen flex-col items-center justify-start",
         "md:flex-row md:justify-center",
-        "gap-10 bg-stone-800 px-10",
+        "cursor-default gap-10 bg-stone-800 px-10",
       )}
     >
       <div className="flex w-90 flex-col items-center justify-center">
-        <h1 className="mx-2 cursor-default text-6xl font-bold text-slate-400">
+        <h1 className="mx-2 text-6xl font-bold text-slate-400">
           Structure Visualizer
         </h1>
         <button
@@ -154,7 +154,7 @@ export const App = () => {
               "my-2",
             )}
           >
-            <StructureList
+            <PickList
               structures={availableStructures}
               listId="available"
               listTitle="Available"
@@ -179,11 +179,11 @@ export const App = () => {
                 {"<"}
               </button>
             </div>
-            <StructureList
+            <PickList
               structures={selectedStructures}
               listId="selected"
               listTitle="Selected"
-            ></StructureList>
+            ></PickList>
           </div>
 
           <DragOverlay
@@ -193,7 +193,7 @@ export const App = () => {
               }),
             }}
           >
-            {activeItem ? <StructureItem structure={activeItem} /> : null}
+            {activeItem ? <PickItem structure={activeItem} /> : null}
           </DragOverlay>
         </DndContext>
         <a
