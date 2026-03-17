@@ -27,9 +27,21 @@ const StructureItem = ({ value, bgcolor }: ItemProp) => {
 
 const StructureContainer = ({ structure }: { structure: DataStructure }) => {
   return (
-    <div className="flex h-200 w-90 flex-col items-center justify-evenly text-slate-300 md:h-[90%]">
-      <h1 className="text-3xl font-semibold">{structure.name}</h1>
-      {structure.get().map((val) => (
+    <div className="flex h-200 w-90 flex-col items-center justify-center text-slate-300 md:h-[90%]">
+      <div className="flex w-full flex-row justify-between bg-stone-700">
+        <h1 className="w-[60%] text-center text-3xl font-semibold">
+          {structure.name}
+        </h1>
+        <div className="flex w-[40%] justify-between text-slate-300">
+          <button className="w-full hover:cursor-pointer hover:bg-stone-600">
+            +
+          </button>
+          <button className="w-full hover:cursor-pointer hover:bg-stone-600">
+            -
+          </button>
+        </div>
+      </div>
+      {[...structure.get()].reverse().map((val) => (
         <StructureItem
           key={val}
           value={val}
