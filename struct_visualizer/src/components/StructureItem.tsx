@@ -19,27 +19,29 @@ const StructureItem = ({ value, bgcolor, onAdd, onRemove }: ItemProp) => {
       style={{ backgroundColor: `${bgcolor}${opacity}` }}
       className={cn("relative flex h-12 w-full", "text-xl")}
     >
-      {(onAdd || onRemove) && (
-        <>
-          <button
-            className={cn(
-              "flex h-full w-full items-center justify-center",
-              "bg-emerald-800 hover:cursor-pointer hover:bg-emerald-700",
-            )}
-            onClick={onAdd}
-          >
-            <Plus size={40} />
-          </button>
-          <button
-            className={cn(
-              "flex h-full w-full items-center justify-center",
-              "bg-amber-800 hover:cursor-pointer hover:bg-amber-700",
-            )}
-            onClick={onRemove}
-          >
-            <Minus size={40} />
-          </button>
-        </>
+      {onAdd ? (
+        <button
+          className={cn(
+            "flex h-full w-1/2 items-center justify-center",
+            "bg-emerald-800 hover:cursor-pointer hover:bg-emerald-700",
+          )}
+          onClick={onAdd}
+        >
+          <Plus size={40} />
+        </button>
+      ) : (
+        <div className="w-1/2" />
+      )}
+      {onRemove && (
+        <button
+          className={cn(
+            "flex h-full w-1/2 items-center justify-center",
+            "bg-amber-800 hover:cursor-pointer hover:bg-amber-700",
+          )}
+          onClick={onRemove}
+        >
+          <Minus size={40} />
+        </button>
       )}
       <h1 className="pointer-events-none absolute flex h-full w-full items-center justify-center">
         {value}

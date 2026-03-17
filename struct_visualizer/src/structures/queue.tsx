@@ -2,7 +2,7 @@ import type DataStructure from "./DataStructure";
 
 export default class Queue implements DataStructure {
   readonly name: string = "Queue";
-  readonly associatedColor: string = "#10e971";
+  readonly associatedColor: string = "#2a8b5b";
   private stack: number[] = [...Array(5).keys()].map((i) => i + 1);
 
   readonly get = (): number[] => this.stack;
@@ -11,7 +11,8 @@ export default class Queue implements DataStructure {
     this.stack.push(newItem);
   };
 
-  readonly shouldShowAdd = (index: number): boolean =>
-    index === this.stack.length - 1;
-  readonly shouldShowRemove = (index: number): boolean => index === 0;
+  readonly shouldShowAdd = (reversedIndex: number): boolean =>
+    reversedIndex === 0;
+  readonly shouldShowRemove = (reversedIndex: number): boolean =>
+    reversedIndex === this.stack.length - 1;
 }

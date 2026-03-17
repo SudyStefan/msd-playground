@@ -17,8 +17,11 @@ const StructureContainer = ({ structure }: { structure: DataStructure }) => {
   };
 
   return (
-    <div className="flex w-90 flex-col items-center justify-center bg-stone-700 text-slate-300 md:h-[90%]">
-      <h1 className="w-3/5 py-2 text-center text-3xl font-semibold">
+    <div className="flex w-90 flex-col items-center justify-center text-slate-300 md:h-[90%]">
+      <h1
+        className="w-full py-2 text-center text-3xl font-semibold"
+        style={{ backgroundColor: structure.associatedColor }}
+      >
         {structure.name}
       </h1>
       {[...list].reverse().map((val, index) => (

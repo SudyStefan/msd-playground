@@ -6,6 +6,6 @@ export default interface DataStructure {
   push(newItem: number): void;
   pop(): number;
 
-  shouldShowAdd(index: number): boolean;
-  shouldShowRemove(index: number): boolean;
+  shouldShowAdd(reversedIndex: number): boolean;
+  shouldShowRemove(reversedIndex: number): boolean;
 }

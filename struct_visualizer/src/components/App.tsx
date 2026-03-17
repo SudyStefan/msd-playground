@@ -10,13 +10,10 @@ import {
 } from "@dnd-kit/core";
 import { arrayMove } from "@dnd-kit/sortable";
 import { cn } from "../helpers/utils";
-import Linked from "../structures/linked";
 import PickItem from "./PickItem";
 import PickList from "./PickList";
-import Heap from "../structures/heap";
 import Queue from "../structures/queue";
 import Stack from "../structures/stack";
-import DoubleLinked from "../structures/doubleLinked";
 import StructureContainer from "./StructureContainer";
 
 export const App = () => {
@@ -35,11 +32,11 @@ export const App = () => {
 
   useEffect(() => {
     setAvailableStructures([
-      new Linked(),
-      new Heap(),
+      // new Linked(),
+      // new Heap(),
       new Queue(),
       new Stack(),
-      new DoubleLinked(),
+      // new DoubleLinked(),
     ]);
   }, []);
 

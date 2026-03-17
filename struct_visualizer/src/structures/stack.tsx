@@ -11,8 +11,8 @@ export default class Stack implements DataStructure {
     this.stack.push(newItem);
   };
 
-  readonly shouldShowAdd = (index: number): boolean =>
-    index === this.stack.length - 1;
-  readonly shouldShowRemove = (index: number): boolean =>
-    index === this.stack.length - 1;
+  readonly shouldShowAdd = (reversedIndex: number): boolean =>
+    reversedIndex === 0; //this.stack.length - 1;
+  readonly shouldShowRemove = (reversedIndex: number): boolean =>
+    reversedIndex === 0; //this.stack.length - 1;
 }
