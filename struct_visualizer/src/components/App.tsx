@@ -123,15 +123,10 @@ export const App = () => {
       className={cn(
         "flex h-screen w-screen flex-col items-center justify-start",
         "md:flex-row md:justify-center",
-        "bg-stone-800 px-10",
+        "gap-10 bg-stone-800 px-10",
       )}
     >
-      <div
-        className={cn(
-          "flex flex-col items-center justify-center",
-          "w-full max-w-90",
-        )}
-      >
+      <div className="flex w-90 flex-col items-center justify-center">
         <h1 className="mx-2 cursor-default text-6xl font-bold text-slate-400">
           Structure Visualizer
         </h1>
