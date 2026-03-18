@@ -1,5 +1,5 @@
 import { useDroppable } from "@dnd-kit/core";
-import type DataStructure from "../structures/DataStructure";
+import type SortAlgorithm from "../algos/SortAlgorithm";
 import PickItem from "./PickItem";
 import {
   SortableContext,
@@ -7,7 +7,7 @@ import {
 } from "@dnd-kit/sortable";
 
 type PickListProps = {
-  items: DataStructure[];
+  items: SortAlgorithm[];
   listId: string;
   listTitle: string;
 };

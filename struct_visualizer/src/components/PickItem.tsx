@@ -3,11 +3,9 @@ import { cn } from "../helpers/utils";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 
-export type PickItemProps = { structure: DataStructure };
-
-const PickItem = ({ structure }: PickItemProps) => {
+const PickItem = ({ item }: { item: DataStructure }) => {
   const { attributes, listeners, setNodeRef, transform, transition } =
-    useSortable({ id: structure.name });
+    useSortable({ id: item.name });
 
   const style = { transform: CSS.Transform.toString(transform), transition };
 
@@ -24,7 +22,7 @@ const PickItem = ({ structure }: PickItemProps) => {
         "active:cursor-grabbing active:opacity-25",
       )}
     >
-      <span style={{ color: structure.associatedColor }}>{structure.name}</span>
+      <span style={{ color: item.associatedColor }}>{item.name}</span>
     </div>
   );
 };
