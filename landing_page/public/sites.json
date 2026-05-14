@@ -17,6 +17,12 @@
       "description": "Visualizes common operations of different data structures",
       "logoName": "./struct_visualizer/data.png",
       "indexPath": "./struct_visualizer/index.html"
+    },
+    {
+      "name": "Catch Game",
+      "description": "Catch Game made in JS (Exercise of Lecture)",
+      "logoName": "./catch/bounce.png",
+      "indexPath": "./catch/index.html"
     }
   ]
 }

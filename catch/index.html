@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Catch Game</title>
+    <link rel="styles" src="./styles.css" />
+    <script src="./p5.min.js"></script>
+    <script src="./p5.sound.min.js"></script>
+    <script src="./game.js" defer></script>
+    <link rel="icon" type="image/svg+xml" href="./bounce.png" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <!-- js insert point -->
+    <main id="sketch-holder"></main>
+
+    <div id="sidebar">
+      <h1>Catch Game</h1>
+      <p>Score: <span id="score">0</span></p>
+      <div id="liveContainer">
+        <div class="live">❤</div>
+        <div class="live">❤</div>
+        <div class="live">❤</div>
+      </div>
+      <h3>Difficulty:</h3>
+      <div class="difficultyContainer">
+        <input type="radio" id="easy" name="difficulty" value="easy" checked />
+        <label for="easy">easy</label>
+
+        <input type="radio" id="medium" name="difficulty" value="medium" />
+        <label for="medium">Medium</label>
+
+        <input type="radio" id="hard" name="difficulty" value="hard" />
+        <label for="hard">HARD</label>
+      </div>
+      <button id="start">START</button>
+      <button id="reset">RESET</button>
+    </div>
+  </body>
+</html>

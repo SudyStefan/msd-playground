@@ -4,3 +4,5 @@
   - Snake Game made in TypeScript
 - #### Landing Page
   - Routing app for FH host
+- #### Catch
+  - Catch Game made in JS (Exercise of Lecture)
