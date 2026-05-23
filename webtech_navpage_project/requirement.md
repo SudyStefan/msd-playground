@@ -17,4 +17,4 @@ the shown projects are not part of the actual project!
 - js
   - dynamic dom from json
 - css
-  - responsive css table
+  - responsive css table/grid

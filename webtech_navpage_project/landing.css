@@ -1,35 +1,6 @@
-html,
-body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  overflow: hidden;
-}
-
-body {
-  font-family:
-    -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu",
-    "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
-}
-
-#root {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-  background-color: #292524;
-}
-
-#content-root {
-  display: flex;
-  min-height: 95vh;
-  min-width: 100vw;
-}
-
 #landing-root {
   display: flex;
+  margin-top: 5rem;
   min-width: 100%;
   flex-direction: column;
 }
@@ -38,14 +9,6 @@ body {
   width: 100%;
   height: calc(100vh - 50px);
   border: none;
-}
-
-#list-title {
-  padding-bottom: 1.25rem;
-  text-align: center;
-  font-size: 3rem;
-  font-weight: 700;
-  color: #94a3b8;
 }
 
 #list-container {
@@ -61,18 +24,16 @@ body {
 .card-container {
   display: flex;
   min-width: 400px;
+  min-height: 180px;
+  margin: auto;
+
   justify-content: center;
   align-items: center;
-
-  border-radius: 0.75rem;
-  border: 1px solid #fef3c7;
-  background-color: #57534e;
-
-  padding-top: 1.25rem;
-  padding-bottom: 1.25rem;
-
+  border-radius: 1rem;
+  border: 1px solid var(--card-border);
+  background-color: var(--bg-secondary);
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-
+  cursor: pointer;
   transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 200ms;
@@ -111,10 +72,9 @@ body {
 .card-title {
   margin: auto;
   width: 100%;
-  text-align: center;
   font-size: 1.5rem;
   font-weight: 700;
-  color: #94a3b8;
+  color: var(--text-primary);
 }
 
 .card-text-container {
@@ -123,5 +83,5 @@ body {
 
 .card-text {
   font-weight: 600;
-  color: #94a3b8;
+  color: var(--text-secondary);
 }

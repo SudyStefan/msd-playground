@@ -3,17 +3,27 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="./public/baseg.png" />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="main.css" />
+    <link rel="stylesheet" href="navbar.css" />
+    <link rel="stylesheet" href="landing.css" />
     <script type="module" src="landing.js" defer></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sudy Landing</title>
   </head>
   <body>
     <div id="root">
-      <nav id="shared-nav">
-        <a href="./"><button class="nav-button">Home</button></a>
+      <nav id="navbar">
+        <div id="nav-container">
+          <a href="./" id="home-logo"><img src="./public/baseg.png" /></a>
+          <a href="https://github.com/SudyStefan/msd-playground" id="home-logo"><img src="./public/github_icon.svg" /></a>
+          <ul id="nav-list">
+            <!-- js nav entry point -->
+          </ul>
+        </div>
       </nav>
-      <div id="content-root" />
+      <div id="content-root">
+        <!-- js content entry point -->
+      </div>
     </div>
   </body>
 </html>
