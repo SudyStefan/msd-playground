@@ -7,7 +7,11 @@
     "install": "cd ./landing_page && npm install && cd ../algo_visualizer && npm install && cd ../snek && npm install && cd ../struct_visualizer && npm install"
   },
   "devDependencies": {
+    "@types/p5": "^1.7.7",
     "prettier": "^3.8.1",
     "prettier-plugin-tailwindcss": "^0.7.2"
+  },
+  "dependencies": {
+    "tone": "^15.1.22"
   }
 }

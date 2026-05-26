@@ -13,6 +13,12 @@
       "indexPath": "./catch/index.html"
     },
     {
+      "name": "Pong",
+      "description": "Pong Game made in JS with P5.js",
+      "logoName": "./pong/ping-pong.png",
+      "indexPath": "./pong/index.html"
+    },
+    {
       "name": "Algo Visualizer",
       "description": "Charts the runtime of various Sorting Algorithms against each other",
       "logoName": "./algo_visualizer/sort.png",
