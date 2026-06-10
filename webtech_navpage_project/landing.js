@@ -18,18 +18,31 @@ async function loadConfig() {
   return config;
 }
 
-function buildCard(siteData) {
+function showProject(indexPath) {
+  contentRoot.innerHTML = `
+    <iframe id="app-viewer" src="${indexPath}" />
+  `;
+}
+
+function showHome(config) {
+  contentRoot.innerHTML = `
+    <div id="landing-root">
+      <div id="list-container"></div>
+    </div>
+  `;
+  const newListContainer = document.getElementById("list-container");
+
+  config.sites.forEach((site) => {
+    buildCard(site, newListContainer);
+  });
+}
+
+function buildCard(siteData, container) {
   console.log(`Creating card for ${siteData.name}`);
   const cardContainer = document.createElement("div");
-  listContainer.appendChild(cardContainer);
-
   cardContainer.className = "card-container";
-  cardContainer.addEventListener("click", () => {
-    contentRoot.innerHTML = `
-      <iframe id="app-viewer" src="${siteData.indexPath}" />
-    `;
-  });
-  cardContainer.innerHTML += `
+
+  cardContainer.innerHTML = `
     <div class="card-image">
       <img src="${siteData.logoName}" />
     </div>
@@ -42,6 +55,20 @@ function buildCard(siteData) {
       </div>
     </div>
   `;
+
+  cardContainer.addEventListener("click", () => {
+    showProject(siteData.indexPath);
+
+    const url = new URL(window.location.href);
+    url.searchParams.set("project", siteData.name);
+    history.pushState(
+      { project: siteData.name, path: siteData.indexPath },
+      "",
+      url,
+    );
+  });
+
+  container.appendChild(cardContainer);
 }
 
 function buildNavbar(siteData) {
@@ -51,13 +78,40 @@ function buildNavbar(siteData) {
 
   navItem.className = "nav-link";
   navItem.addEventListener("click", () => {
-    contentRoot.innerHTML = `
-      <iframe id="app-viewer" src="${siteData.indexPath}" scrolling="no">
-    `;
+    showProject(siteData.indexPath);
+
+    const url = new URL(window.location.href);
+    url.searchParams.set("project", siteData.name);
+    history.pushState(
+      { project: siteData.name, path: siteData.indexPath },
+      "",
+      url,
+    );
   });
   navItem.textContent = `${siteData.name}`;
 }
 
+// load json
 const json = await loadConfig();
-json.sites.forEach(buildCard);
+
+// buck/forward button listener
+window.addEventListener("popstate", (event) => {
+  if (event.state && event.state.path) {
+    showProject(event.state.path);
+  } else {
+    showHome(json);
+  }
+});
+const urlParams = new URLSearchParams(window.location.search);
+const projectParam = urlParams.get("project");
+const activeSite = json.sites.find((site) => site.name === projectParam);
+
+// switch sites
+if (activeSite) {
+  showProject(activeSite.indexPath);
+} else {
+  json.sites.forEach((site) => buildCard(site, listContainer));
+}
+
+// build navbar
 json.sites.forEach(buildNavbar);
