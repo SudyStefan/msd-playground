@@ -1,6 +1,7 @@
 # notes
 
 - github logo moven -> statt im header als impressum footer
-- scroll does not work on landing
+- scroll funktioniert nicht für landing page
+- grid css anpassung -> items sind zentriert
 - back button supporten
-- 1-2 sätze für promise erklärung
+- 1-2 sätze für fetch() und promises erklärung
