@@ -3,7 +3,6 @@ body {
   margin: 0;
   padding: 0;
   height: 100%;
-  overflow: hidden;
 
   /* main vars */
   --bg-primary: #292524;
@@ -14,10 +13,9 @@ body {
   /* navbar vars */
   --nav-border: #fef3c7;
   --nav-height: 70px;
-  
+
   /* card vars */
   --card-border: #fef3c7;
-
 }
 
 body {
@@ -30,15 +28,14 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
+  justify-content: space-between;
+  min-width: 100%;
+  min-height: 100%;
   background-color: var(--bg-primary);
   caret-color: transparent;
 }
 
 #content-root {
   display: flex;
-  min-height: 95vh;
-  min-width: 100vw;
+  min-width: 100%;
 }

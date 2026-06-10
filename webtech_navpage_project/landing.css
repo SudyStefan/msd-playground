@@ -1,13 +1,13 @@
 #landing-root {
   display: flex;
-  margin-top: 5rem;
+  margin-top: 1rem;
   min-width: 100%;
   flex-direction: column;
 }
 
 #app-viewer {
   width: 100%;
-  height: calc(100vh - 50px);
+  height: 80vh;
   border: none;
 }
 
